@@ -24,12 +24,12 @@ const busStops = [
   });
   
   let marker = new mapboxgl.Marker().setLngLat([-71.092761, 42.357575]).addTo(map);
-  // counter here represents the index of the current bus stop
+ // counter here represents the index of the current bus stop
   let counter = 0;
   function move() {
     
-    // Use counter to access bus stops in the array busStops
-    // Make sure you call move() after you increment the counter.
+// Use counter to access bus stops in the array busStops
+ 
    setTimeout(() => {
      if (counter >= busStops.length) return;
       marker.setLngLat(busStops[counter]);
@@ -38,6 +38,5 @@ const busStops = [
   },1000);
   }
   
-  // Do not edit code past this point
   if (typeof module !== 'undefined') {
-    module.exports = { move, counter, marker, busStops };
+    module.exports = { move, counter, marker, busStops }};
