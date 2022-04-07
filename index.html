@@ -20,6 +20,20 @@
     <script src="crime_2012_december.json" ></script>
     <div id="map"></div>    
     <script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiamJlY2VycmE2MDEiLCJhIjoiY2wxMzZzdXNwMXRvODNjcWh4NnRqZHFyeSJ9.ZDH79YaGTy9dlf7f5UhS6A';
+  
+  // This is the map instance
+  let map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-71.104081, 42.365554],
+    zoom: 14,
+  });
+
+
+
+
+
 
       var map = new mapboxgl.Map({
         container: 'map',
@@ -27,6 +41,10 @@
         center: [-71.091542,42.358862],
         zoom: 12
     });
+
+
+
+
 
         async function run(){   
             const locations = await getBusLocations();
