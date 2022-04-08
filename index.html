@@ -18,36 +18,60 @@
     
     <script src="crime_2012_december.json" ></script>
     <div id="map"></div>    
-    <script>
+<script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiamJlY2VycmE2MDEiLCJhIjoiY2wxMzZzdXNwMXRvODNjcWh4NnRqZHFyeSJ9.ZDH79YaGTy9dlf7f5UhS6A';
 
-      var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-116.374458,33.722244],
-        zoom: 14
-    });
+const markerArray = [];
+let busArray = [];
 
-        async function run(){   
+  let map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-71.091542, 42.358862],
+    zoom: 12,
+    });
+  async function run(){   
             const locations = await getBusLocations();
             console.log(new Date());
             console.log(locations);
             setTimeout(run, 15000);
-        }
-        
-        // Request bus data from MBTA
-        async function getBusLocations(){
-            const url = 'https://api-v3.mbta.com/vehicles?filter[route]=1&include=trip';
-            const response = await fetch(url);
-            const json     = await response.json();
-            return json.data;
-        }
-        
-        run();
-        
-        </script>
+    }
 
- new
- 
+  const run  = async () => {
+    busArray = await getBusLocations();
+    console.log(busArray);
+    }
+  const getBusLocations = async () => {
+    const responce = await fetch ('mapbox://styles/mapbox/streets-v11')
+    const json = await response.json();
+      return json.data;
+    }
+
+const createMapMarkers = () => {
+for (bus of butArray) {
+const marker = new mapboxgl.marker()
+.setLngLat([bus.atributes.longitude, bus.atributes.latitude])
+.addTo(map);
+const item = { 
+  'marker': marker,
+  'id: bus.id'
+    }
+markerArray.push(item);
+    }
+}    
+
+const updateMarker = (num) => {
+  const busToUpdate = getBus(markerArray[num].id);
+  console.log (busToUpdate);
+  markerArray[num].marker.setLngLat([busToUpdate.atributes.longitude,busToUpdate.atributes.latitude])
+}
+const getBus = (markerId) => {
+  const result = busArray.find((item) =>
+  item.id === markerId);
+  console.log(result)
+  return results;
+}      
+</script>
+
 </body>
 </html>
