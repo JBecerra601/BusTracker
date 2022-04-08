@@ -30,19 +30,13 @@ let busArray = [];
     center: [-71.091542, 42.358862],
     zoom: 12,
     });
-  async function run(){   
-            const locations = await getBusLocations();
-            console.log(new Date());
-            console.log(locations);
-            setTimeout(run, 15000);
-    }
-
+ 
   const run  = async () => {
     busArray = await getBusLocations();
     console.log(busArray);
     }
   const getBusLocations = async () => {
-    const responce = await fetch ('mapbox://styles/mapbox/streets-v11')
+    const responce = await fetch ('https://api-v3.mbta.com/vehicles?filter[route]=1&include=trip')
     const json = await response.json();
       return json.data;
     }
